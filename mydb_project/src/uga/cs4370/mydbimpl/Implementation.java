@@ -13,6 +13,10 @@ public class Implementation implements RA {
     @Override
     public Relation select(Relation rel, Predicate p) {
         // NEEDS IMPLEMENTATION
+
+        /*
+         * PRETTY MUCH THE WHERE CLAUSE IN SQL.
+         */
         return null;
     }
 
@@ -28,6 +32,10 @@ public class Implementation implements RA {
     @Override
     public Relation project(Relation rel, List<String> attrs) {
         // NEEDS IMPLEMENTATION
+
+        /*
+         * PRETTY MUCH THE SELECT CLAUSE IN SQL
+         */
         return null;
     }
 
@@ -41,6 +49,14 @@ public class Implementation implements RA {
     @Override
     public Relation union(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
+
+        /*
+         * NOTE:
+         * RETURNING TABLE SHOULD ONLY HAVE ATRRIBUTE NAMES FROM rel1
+         * Ensure to check that number of attributes in rel1 and rel2 are equal.
+         * Ensure to check that types of attributes in rel1 and rel2 are the same (attribute name does not matter).
+         * Technically supposed to remove duplicates, but Menik specified it does not matter for the project.
+         */
         return null;
     }
 
@@ -54,6 +70,13 @@ public class Implementation implements RA {
     @Override
     public Relation diff(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
+
+        /*
+         * NOTE:
+         * RETURNING TABLE SHOULD ONLY HAVE ATRRIBUTE NAMES FROM rel1
+         * Check if a row in rel1 appears in rel2, if so remove it from returned relation.
+         * basically XOR, only return rows not present in both rel1 and rel2.
+         */
         return null;
     }
 
@@ -82,6 +105,10 @@ public class Implementation implements RA {
     @Override
     public Relation cartesianProduct(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
+
+        /*
+         * Every possible combination of joining rel1 and rel2.
+         */
         return null;
     }
 
@@ -93,6 +120,11 @@ public class Implementation implements RA {
     @Override
     public Relation join(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
+        /*
+         * Join columns with cartesian product together, but decide
+         * the column to join by automatically based on common attribute name.
+         * RETURN RELATION SHOULD ONLY CONTAIN ONE OF THE COLUMNS THAT SHARE NAME.
+         */
         return null;
     }
 
@@ -106,6 +138,11 @@ public class Implementation implements RA {
     @Override
     public Relation join(Relation rel1, Relation rel2, Predicate p) {
         // NEEDS IMPLEMENTATION
+
+        /*
+         * NOTE:
+         * Joins rel1 and rel2 using cartesianProduct based on Predicate.
+         */
         return null;
     }
 }
