@@ -32,5 +32,7 @@ public class Driver {
         rel2.loadData("/Users/harrisonkirstein/Desktop/mydb_project/activity_2/mysql-files/student_export.csv");
         rel2.print();
  
+        //rel instr10001 = ra.select(instructor,(row)-> row.get(instr.getAttrIndex("instr_id").equals(cell.val(10001))))
+        //instr10000.print();
     }
 }
