@@ -90,6 +90,10 @@ public class Implementation implements RA {
     @Override
     public Relation diff(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
+        if(rel1.getAttrs().equals(rel2.getAttrs()) && (rel1.getTypes().equals(rel2.getTypes()))){
+            Relation newrel = new RelationImpl(rel1.getAttrs(),rel1.getTypes());
+
+
 
         /*
          * NOTE:
@@ -97,7 +101,10 @@ public class Implementation implements RA {
          * Check if a row in rel1 appears in rel2, if so remove it from returned relation.
          * basically XOR, only return rows not present in both rel1 and rel2.
          */
-        return null;
+            return newrel;
+        } else {
+            throw new IllegalArgumentException("rel1 and rel2 are not compatible.");
+        }
     }
 
     /**
