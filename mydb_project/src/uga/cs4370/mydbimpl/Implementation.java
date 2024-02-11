@@ -4,14 +4,13 @@ import uga.cs4370.mydb.*;
 import java.util.List;
 
 public class Implementation implements RA {
+    
     /**
      * Performs the select operation on the relation rel
      * by applying the predicate p.
      * 
      * @return The resulting relation after applying the select operation.
      */
-
-
     @Override
     public Relation select(Relation rel, Predicate p) {
         // NEEDS IMPLEMENTATION
@@ -43,6 +42,8 @@ public class Implementation implements RA {
 
         /*
          * PRETTY MUCH THE SELECT CLAUSE IN SQL
+         * Gets columns
+         * https://www.makeuseof.com/learn-how-to-use-the-project-and-selection-operations-in-sql/
          */
         return null;
     }
@@ -58,7 +59,7 @@ public class Implementation implements RA {
     public Relation union(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
         if(rel1.getAttrs().equals(rel2.getAttrs()) && (rel1.getTypes().equals(rel2.getTypes()))){
-            Relation newrel = RelationImpl(rel1.getAttrs(),rel1.getTypes());
+            Relation newrel = new RelationImpl(rel1.getAttrs(),rel1.getTypes());
             for(int i = 0; i<(rel1.getSize()); i++) {
                 newrel.insert(rel1.getRow(i));
             }
@@ -77,10 +78,6 @@ public class Implementation implements RA {
          * Ensure to check that types of attributes in rel1 and rel2 are the same (attribute name does not matter).
          * Technically supposed to remove duplicates, but Menik specified it does not matter for the project.
          */
-    }
-
-    //boolean Compat(Relation rel1, Relation rel2){
-        //return ();
     }
 
     /**
