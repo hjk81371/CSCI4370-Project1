@@ -2,6 +2,8 @@ package uga.cs4370.mydbimpl;
 
 import java.util.List;
 
+import uga.cs4370.mydb.*;
+
 import uga.cs4370.mydb.Relation;
 import uga.cs4370.mydb.RelationBuilder;
 import uga.cs4370.mydb.Type;
@@ -29,6 +31,6 @@ public class Driver {
             .build();
         rel2.loadData("/Users/harrisonkirstein/Desktop/mydb_project/activity_2/mysql-files/student_export.csv");
         rel2.print();
+ 
     }
-
 }
