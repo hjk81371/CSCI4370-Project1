@@ -10,14 +10,22 @@ public class Implementation implements RA {
      * 
      * @return The resulting relation after applying the select operation.
      */
+
+
     @Override
     public Relation select(Relation rel, Predicate p) {
         // NEEDS IMPLEMENTATION
-
+        Relation newrel = new RelationImpl(rel.getTypes(),rel.getAttrs());
+        for(int i = 0; i<rel.getSize(); i++){
+            List<Cell> rows = newrel.getRow(i);
+            if(p.check(rows)){
+                newrel.insert(rows.subList(0,rows.size()));
+            }
+        }
         /*
          * PRETTY MUCH THE WHERE CLAUSE IN SQL.
          */
-        return null;
+        return newrel;
     }
 
     /**
@@ -49,7 +57,19 @@ public class Implementation implements RA {
     @Override
     public Relation union(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
-
+        if(rel1.getAttrs().equals(rel2.getAttrs()) && (rel1.getTypes().equals(rel2.getTypes()))){
+            Relation newrel = RelationImpl(rel1.getAttrs(),rel1.getTypes());
+            for(int i = 0; i<(rel1.getSize()); i++) {
+                newrel.insert(rel1.getRow(i));
+            }
+            for(int i=0; i<(rel2.getSize());i++){
+                newrel.insert(rel2.getRow(i));
+            }
+            return newrel;
+            }
+        else {
+            throw new IllegalArgumentException ("rel1 and rel2 are not compatible.");
+        }
         /*
          * NOTE:
          * RETURNING TABLE SHOULD ONLY HAVE ATRRIBUTE NAMES FROM rel1
@@ -57,7 +77,10 @@ public class Implementation implements RA {
          * Ensure to check that types of attributes in rel1 and rel2 are the same (attribute name does not matter).
          * Technically supposed to remove duplicates, but Menik specified it does not matter for the project.
          */
-        return null;
+    }
+
+    //boolean Compat(Relation rel1, Relation rel2){
+        //return ();
     }
 
     /**
