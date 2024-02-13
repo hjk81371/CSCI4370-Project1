@@ -14,11 +14,11 @@ public class Implementation implements RA {
     @Override
     public Relation select(Relation rel, Predicate p) {
         // NEEDS IMPLEMENTATION
-        Relation newrel = new RelationImpl(rel.getTypes(),rel.getAttrs());
+        Relation newrel = new RelationBuilder(rel.getTypes(),rel.getAttrs());
         for(int i = 0; i<rel.getSize(); i++){
             List<Cell> rows = newrel.getRow(i);
             if(p.check(rows)){
-                newrel.insert(rows.subList(0,rows.size()));
+                newrel.insert(rows);
             }
         }
         /*
@@ -59,7 +59,7 @@ public class Implementation implements RA {
     public Relation union(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
         if(rel1.getAttrs().equals(rel2.getAttrs()) && (rel1.getTypes().equals(rel2.getTypes()))){
-            Relation newrel = new RelationImpl(rel1.getAttrs(),rel1.getTypes());
+            Relation newrel = new RelationBuilder(rel1.getAttrs(),rel1.getTypes());
             for(int i = 0; i<(rel1.getSize()); i++) {
                 newrel.insert(rel1.getRow(i));
             }
