@@ -24,14 +24,22 @@ public class Driver {
                 .attributeTypes(List.of(Type.INTEGER, Type.STRING, Type.STRING, Type.DOUBLE))
                 .build();
         rel1.loadData("/Users/harrisonkirstein/Desktop/CSCI4370-Project1/instructor_export.csv");
+
+        Relation rel2 = new RelationBuilder()
+        .attributeNames(List.of("id", "name", "dept", "tot_cred"))
+        .attributeTypes(List.of(Type.INTEGER, Type.STRING, Type.STRING, Type.DOUBLE))
+        .build();
+        rel2.loadData("/Users/harrisonkirstein/Desktop/CSCI4370-Project1/student_export.csv");
         List<String> testList = new ArrayList<>();
         testList.add("name");
         testList.add("salary");
         testList.add("dept");
-        testList.add("id");
         RA ra = new Implementation();
 
-        ra.project(rel1, testList).print();
+       //  ra.project(rel1, testList).print();
+
+        // ra.select(rel1,(row)-> row.get(rel1.getAttrIndex("instr_id").equals(Cell.val("10001")))).print();
+        ra.union(rel1, rel2).print();
 
         // Relation rel2 = new RelationBuilder()
         //     .attributeNames(List.of("id", "name", "dept", "tot_cred"))
@@ -40,7 +48,7 @@ public class Driver {
         // rel2.loadData("/Users/harrisonkirstein/Desktop/mydb_project/activity_2/mysql-files/student_export.csv");
         // rel2.print();
  
-        //rel instr10001 = ra.select(instructor,(row)-> row.get(instr.getAttrIndex("instr_id").equals(cell.val(10001))))
-        //instr10000.print();
+        // rel instr10001 = ra.select(instructor,(row)-> row.get(instr.getAttrIndex("instr_id").equals(cell.val(10001))))
+        // instr10000.print();
     }
 }

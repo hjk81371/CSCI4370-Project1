@@ -15,7 +15,7 @@ public class Implementation implements RA {
     @Override
     public Relation select(Relation rel, Predicate p) {
         // NEEDS IMPLEMENTATION
-        Relation newrel = new RelationBuilder(rel.getTypes(),rel.getAttrs());
+        Relation newrel = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();
         for(int i = 0; i<rel.getSize(); i++){
             List<Cell> rows = newrel.getRow(i);
             if(p.check(rows)){
@@ -90,8 +90,8 @@ public class Implementation implements RA {
     @Override
     public Relation union(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
-        if(rel1.getAttrs().equals(rel2.getAttrs()) && (rel1.getTypes().equals(rel2.getTypes()))){
-            Relation newrel = new RelationBuilder(rel1.getAttrs(),rel1.getTypes());
+        if(rel1.getAttrs().size() == (rel2.getAttrs().size()) && (rel1.getTypes().equals(rel2.getTypes()))){
+            Relation newrel = new RelationBuilder().attributeNames(rel1.getAttrs()).attributeTypes(rel1.getTypes()).build();
             for(int i = 0; i<(rel1.getSize()); i++) {
                 newrel.insert(rel1.getRow(i));
             }
@@ -123,7 +123,7 @@ public class Implementation implements RA {
     public Relation diff(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
         if(rel1.getAttrs().equals(rel2.getAttrs()) && (rel1.getTypes().equals(rel2.getTypes()))){
-            Relation newrel = new RelationImpl(rel1.getAttrs(),rel1.getTypes());
+            Relation newrel = new RelationBuilder().attributeNames(rel1.getAttrs()).attributeTypes(rel1.getTypes()).build();
 
 
 
@@ -164,6 +164,14 @@ public class Implementation implements RA {
     @Override
     public Relation cartesianProduct(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
+        List<String> attrs = new ArrayList<>();
+        attrs.addAll(rel1.getAttrs());
+        attrs.addAll(rel2.getAttrs());
+        List<Type> types = new ArrayList<>();
+        types.addAll(rel1.getTypes());
+        types.addAll(rel2.getTypes());
+
+        Relation newRel = new RelationBuilder().attributeNames(attrs).attributeTypes(types).build();
 
         /*
          * Every possible combination of joining rel1 and rel2.
@@ -196,12 +204,12 @@ public class Implementation implements RA {
      */
     @Override
     public Relation join(Relation rel1, Relation rel2, Predicate p) {
+        return select(cartesianProduct(rel1, rel2), p);
         // NEEDS IMPLEMENTATION
 
         /*
          * NOTE:
          * Joins rel1 and rel2 using cartesianProduct based on Predicate.
          */
-        return null;
     }
 }
