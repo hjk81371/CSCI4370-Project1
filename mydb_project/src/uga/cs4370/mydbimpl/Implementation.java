@@ -1,6 +1,7 @@
 package uga.cs4370.mydbimpl;
 import uga.cs4370.mydb.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Implementation implements RA {
@@ -38,14 +39,45 @@ public class Implementation implements RA {
      */
     @Override
     public Relation project(Relation rel, List<String> attrs) {
-        // NEEDS IMPLEMENTATION
+        List<Type> currTypes = rel.getTypes();
+        List<String> currAttributes = rel.getAttrs();
+        List<Integer> attrsToKeep = new ArrayList<>();
+        List<String> attrsNameInCorrectOrder = new ArrayList<>();
 
+        // find columns to keep
+        for (int i = 0; i < currAttributes.size(); i++) {
+            if (attrs.contains(currAttributes.get(i))) {
+                attrsToKeep.add(i);
+                attrsNameInCorrectOrder.add(currAttributes.get(i));
+            }
+        }
+
+        // find types of columns to keep
+        List<Type> newTypes = new ArrayList<>();
+        for (int index : attrsToKeep) {
+            newTypes.add(currTypes.get(index));
+        }
+
+        // create projected relation
+        Relation newRel = new RelationBuilder().attributeNames(attrsNameInCorrectOrder).attributeTypes(newTypes).build();
+
+        // project selected rows onto new relation
+        int numOfRows = rel.getSize();
+        for (int i = 0; i < numOfRows; i++) {
+            List<Cell> currRow = rel.getRow(i);
+            List<Cell> newRow = new ArrayList<>();
+            for (int j = 0; j < attrsToKeep.size(); j++) {
+                newRow.add(currRow.get(attrsToKeep.get(j)));
+            } // for
+
+            newRel.insert(newRow);
+        }
         /*
          * PRETTY MUCH THE SELECT CLAUSE IN SQL
          * Gets columns
          * https://www.makeuseof.com/learn-how-to-use-the-project-and-selection-operations-in-sql/
          */
-        return null;
+        return newRel;
     }
 
     /**
