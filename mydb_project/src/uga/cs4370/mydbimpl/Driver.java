@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uga.cs4370.mydb.*;
-
-import uga.cs4370.mydb.Relation;
-import uga.cs4370.mydb.RelationBuilder;
-import uga.cs4370.mydb.Type;
 import uga.cs4370.mydbimpl.*;
 
 public class Driver {
@@ -24,22 +20,25 @@ public class Driver {
                 .attributeTypes(List.of(Type.INTEGER, Type.STRING, Type.STRING, Type.DOUBLE))
                 .build();
         rel1.loadData("/Users/harrisonkirstein/Desktop/CSCI4370-Project1/instructor_export.csv");
+        //rel1.loadData("C:\\Users\\daalm\\Documents\\GitHub\\CSCI4370-Project1\\mydb_project\\src\\uga\\cs4370\\mydbimpl\\mysql-files\\instructor_export.csv");
 
         Relation rel2 = new RelationBuilder()
         .attributeNames(List.of("id", "name", "dept", "tot_cred"))
         .attributeTypes(List.of(Type.INTEGER, Type.STRING, Type.STRING, Type.DOUBLE))
         .build();
         rel2.loadData("/Users/harrisonkirstein/Desktop/CSCI4370-Project1/student_export.csv");
+        //rel2.loadData("C:\\Users\\daalm\\Documents\\GitHub\\CSCI4370-Project1\\mydb_project\\src\\uga\\cs4370\\mydbimpl\\mysql-files\\student_export.csv");
+
         List<String> testList = new ArrayList<>();
         testList.add("name");
         testList.add("salary");
         testList.add("dept");
         RA ra = new Implementation();
 
-       //  ra.project(rel1, testList).print();
+       //ra.project(rel1, testList).print();
 
-        // ra.select(rel1,(row)-> row.get(rel1.getAttrIndex("instr_id").equals(Cell.val("10001")))).print();
-        ra.cartesianProduct(rel1, rel2).print();
+        //ra.select(rel1,(row)-> row.get(rel1.getAttrIndex("instr_id").equals(cell.val((34175))))).print();
+        //ra.cartesianProduct(rel1, rel2).print();
 
         // Relation rel2 = new RelationBuilder()
         //     .attributeNames(List.of("id", "name", "dept", "tot_cred"))

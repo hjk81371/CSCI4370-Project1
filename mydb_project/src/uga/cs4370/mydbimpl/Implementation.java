@@ -14,7 +14,6 @@ public class Implementation implements RA {
      */
     @Override
     public Relation select(Relation rel, Predicate p) {
-        // NEEDS IMPLEMENTATION
         Relation newrel = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();
         for(int i = 0; i<rel.getSize(); i++){
             List<Cell> rows = newrel.getRow(i);
@@ -89,7 +88,7 @@ public class Implementation implements RA {
      */
     @Override
     public Relation union(Relation rel1, Relation rel2) {
-        // NEEDS IMPLEMENTATION
+        
         if(rel1.getAttrs().size() == (rel2.getAttrs().size()) && (rel1.getTypes().equals(rel2.getTypes()))){
             Relation newrel = new RelationBuilder().attributeNames(rel1.getAttrs()).attributeTypes(rel1.getTypes()).build();
             for(int i = 0; i<(rel1.getSize()); i++) {
@@ -122,7 +121,7 @@ public class Implementation implements RA {
     @Override
     public Relation diff(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
-        if(rel1.getAttrs().equals(rel2.getAttrs()) && (rel1.getTypes().equals(rel2.getTypes()))){
+        if(rel1.getAttrs().size() == (rel2.getAttrs().size()) && (rel1.getTypes().equals(rel2.getTypes()))){
             Relation newrel = new RelationBuilder().attributeNames(rel1.getAttrs()).attributeTypes(rel1.getTypes()).build();
 
 
@@ -163,7 +162,6 @@ public class Implementation implements RA {
      */
     @Override
     public Relation cartesianProduct(Relation rel1, Relation rel2) {
-        // NEEDS IMPLEMENTATION
         List<String> attrs = new ArrayList<>();
         attrs.addAll(rel1.getAttrs());
         List<String> rel2Attributes = rel2.getAttrs();
@@ -227,7 +225,7 @@ public class Implementation implements RA {
     @Override
     public Relation join(Relation rel1, Relation rel2, Predicate p) {
         return select(cartesianProduct(rel1, rel2), p);
-        // NEEDS IMPLEMENTATION
+        
 
         /*
          * NOTE:
