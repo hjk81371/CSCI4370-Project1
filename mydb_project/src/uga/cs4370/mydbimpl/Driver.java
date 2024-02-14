@@ -39,7 +39,7 @@ public class Driver {
        //  ra.project(rel1, testList).print();
 
         // ra.select(rel1,(row)-> row.get(rel1.getAttrIndex("instr_id").equals(Cell.val("10001")))).print();
-        ra.union(rel1, rel2).print();
+        ra.cartesianProduct(rel1, rel2).print();
 
         // Relation rel2 = new RelationBuilder()
         //     .attributeNames(List.of("id", "name", "dept", "tot_cred"))
