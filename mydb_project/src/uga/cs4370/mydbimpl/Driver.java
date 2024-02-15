@@ -21,14 +21,14 @@ public class Driver {
                 .attributeTypes(List.of(Type.INTEGER, Type.STRING, Type.STRING, Type.DOUBLE))
                 .build();
         //rel1.loadData("/Users/harrisonkirstein/Desktop/CSCI4370-Project1/instructor_export.csv");
-        rel1.loadData("C:\\Users\\daalm\\Documents\\GitHub\\CSCI4370-Project1\\mydb_project\\src\\uga\\cs4370\\mydbimpl\\mysql-files\\instructor_export.csv");
+        rel1.loadData("C:\\Users\\brand\\OneDrive\\Documents\\GitHub\\CSCI4370-Project1\\instructor_export.csv");
 
         Relation rel2 = new RelationBuilder()
         .attributeNames(List.of("id", "name", "dept", "tot_cred"))
         .attributeTypes(List.of(Type.INTEGER, Type.STRING, Type.STRING, Type.DOUBLE))
         .build();
         //rel2.loadData("/Users/harrisonkirstein/Desktop/CSCI4370-Project1/student_export.csv");
-        rel2.loadData("C:\\Users\\daalm\\Documents\\GitHub\\CSCI4370-Project1\\mydb_project\\src\\uga\\cs4370\\mydbimpl\\mysql-files\\student_export.csv");
+        rel2.loadData("C:\\Users\\brand\\OneDrive\\Documents\\GitHub\\CSCI4370-Project1\\student_export.csv");
 
         List<String> testList = new ArrayList<>();
         testList.add("id");
@@ -62,17 +62,18 @@ public class Driver {
         
         //Queries go here, must have more than 1 table used also between 1 and 50 rows
         
-        /**
+        
         List<String> test2 = new ArrayList<>();
         test2.add("id");
         test2.add("name");
         test2.add("building");
         test2.add("build_name");
 
-        ra.rename(rel1, testList, test2).print();
-        */
+        //ra.rename(rel1, testList, test2).print();
+        
 
-        ra.diff(rel1, rel1).print();
+        ra.join(rel1, rel2).print();
+        //ra.diff(rel1, rel2).print(); //query 1
         //Relation id9000 =ra.select(rel2, pred);
         //List<String> deptattr = Arrays.asList("dept");
         //ra.project(id9000, deptattr).print();
