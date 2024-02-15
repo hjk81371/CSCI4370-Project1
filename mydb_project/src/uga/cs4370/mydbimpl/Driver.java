@@ -46,15 +46,28 @@ public class Driver {
             }
         };
 
-        //Relation select = ra.select(rel2, pred);
+        Predicate strPred = new Predicate(){
+            @Override
+            public boolean check(List<Cell> row) {
+                int attrIndex = rel1.getAttrIndex("dept");
+                Cell cell = row.get(attrIndex);
+                String value = (String) cell.getAsString();
+                return value == "English";
+            }
+        };
 
 
+        
         //Queries go here, must have more than 1 table used also between 1 and 50 rows
         
-        
+        //Relation id123 =ra.select(rel2, pred);
+        //List<String> deptattr = Arrays.asList("dept");
+        //ra.project(id123, deptattr).print();
+
         //ra.project(rel1, testList).print();
         //ra.cartesianProduct(rel2, ra.project(rel1, testList)).print();
         //ra.cartesianProduct(rel1, rel2).print();
+        //ra.join(rel1,rel2,strPred).print();
 
         // Relation rel2 = new RelationBuilder()
         //     .attributeNames(List.of("id", "name", "dept", "tot_cred"))
@@ -65,5 +78,6 @@ public class Driver {
  
         // rel instr10001 = ra.select(instructor,(row)-> row.get(instr.getAttrIndex("instr_id").equals(cell.val(34175))))
         // instr10000.print();
+        //ra.select(rel1,strPred).print();;
     }
 }
