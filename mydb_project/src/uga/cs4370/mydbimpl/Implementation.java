@@ -153,6 +153,7 @@ public class Implementation implements RA {
      */
     @Override
     public Relation rename(Relation rel, List<String> origAttr, List<String> renamedAttr) {
+        if(origAttr.getAttrs() != renamedArrt.getAttrs() || origAttr.getAttrs() != rel.get
         List<String> attr = rel.getAttrs();
         List<String> newAttr = new ArrayList<String>();
         HashMap<String, String> sim = new HashMap<String, String>();
