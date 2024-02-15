@@ -42,7 +42,7 @@ public class Driver {
                 int attrIndex = rel2.getAttrIndex("id");
                 Cell cell = row.get(attrIndex);
                 int value = (Integer) cell.getAsInt();
-                return value == 123;
+                return value > 9000;
             }
         };
 
@@ -60,9 +60,9 @@ public class Driver {
         
         //Queries go here, must have more than 1 table used also between 1 and 50 rows
         
-        //Relation id123 =ra.select(rel2, pred);
+        //Relation id9000 =ra.select(rel2, pred);
         //List<String> deptattr = Arrays.asList("dept");
-        //ra.project(id123, deptattr).print();
+        //ra.project(id9000, deptattr).print();
 
         //ra.project(rel1, testList).print();
         //ra.cartesianProduct(rel2, ra.project(rel1, testList)).print();
