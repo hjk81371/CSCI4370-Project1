@@ -1,6 +1,7 @@
 package uga.cs4370.mydbimpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import uga.cs4370.mydb.*;
@@ -34,6 +35,19 @@ public class Driver {
         testList.add("salary");
         testList.add("dept");
         RA ra = new Implementation();
+
+        Predicate pred = new Predicate(){
+            @Override
+            public boolean check(List<Cell> row) {
+                int attrIndex = rel2.getAttrIndex("id");
+                Cell cell = row.get(attrIndex);
+                int value = (Integer) cell.getAsInt();
+                return value == 123;
+            }
+        };
+
+        //Relation select = ra.select(rel1, pred);
+
 
         //Queries go here, must have more than 1 table used also between 1 and 50 rows
         

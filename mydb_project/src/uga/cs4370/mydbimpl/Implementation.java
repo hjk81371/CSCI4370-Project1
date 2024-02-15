@@ -11,15 +11,20 @@ public class Implementation implements RA {
      * by applying the predicate p.
      * 
      * @return The resulting relation after applying the select operation.
+     * Is giving a weird array out of bounds index atm
      */
     @Override
     public Relation select(Relation rel, Predicate p) {
+        List<Integer> attrsToKeep = new ArrayList<>();
         Relation newrel = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();
         for(int i = 0; i<rel.getSize(); i++){
             List<Cell> rows = newrel.getRow(i);
-            if(p.check(rows)){
-                newrel.insert(rows);
-            }
+            List<Cell> newRow = new ArrayList<>();
+            for (int j = 0; j < attrsToKeep.size(); j++) {
+                newRow.add(rows.get(attrsToKeep.get(j)));
+            } // for
+
+           
         }
         /*
          * PRETTY MUCH THE WHERE CLAUSE IN SQL.
