@@ -170,7 +170,7 @@ public class Implementation implements RA {
                     newAttr.add(attr.get(i));
                 }
             }
-            Relation newName = new RelationBuilder().attributeNames(newAttr).attributeTypes(rel.getTypes()).build(); //fix line
+            Relation newName = new RelationBuilder().attributeNames(newAttr).attributeTypes(rel.getTypes()).build(); 
             return newName;
         } else {
           throw new IllegalArgumentException("attributes in origAttr are not present in rel or origAttr and renamedAttr do not have matching argument counts.");
