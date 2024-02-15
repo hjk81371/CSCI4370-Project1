@@ -154,25 +154,30 @@ public class Implementation implements RA {
      */
     @Override
     public Relation rename(Relation rel, List<String> origAttr, List<String> renamedAttr) {
-        List<String> attr = rel.getAttrs();
-        List<String> newAttr = new ArrayList<String>();
-        HashMap<String, String> sim = new HashMap<String, String>();
-        
-        for(int i=0; i<attr.size(); i++){
-            sim.put(origAttr.get(i), renamedAttr(i));
-        }
-        for(int i=0; i<attr.size(); i++){
-            if(sim.containsKey(attr.get(i))){
-                newAttr.add(sim.get(attr.get(i)));
+        if(origAttr.getAttrs() != renamedArrt.getAttrs() || origAttr.getAttrs() != rel.get()) {
+            List<String> attr = rel.getAttrs();
+            List<String> newAttr = new ArrayList<String>();
+            HashMap<String, String> sim = new HashMap<String, String>();
+            
+            for(int i=0; i<attr.size(); i++){
+                sim.put(origAttr.get(i), renamedAttr.get(i));
             }
-            else{
-                newAttr.add(attr.get(i));
+            for(int i=0; i<attr.size(); i++){
+                if(sim.containsKey(attr.get(i))){
+                    newAttr.add(sim.get(attr.get(i)));
+                }
+                else{
+                    newAttr.add(attr.get(i));
+                }
             }
+            Relation newName = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();;
+            return newName;
+        } else {
+            throw new IllegalArgumentException("attributes in origAttr are not present in rel or origAttr and renamedAttr do not have matching argument counts.");
         }
-        Relation newName = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();;
-        return newName;
     }
-    
+        
+    }
 
     /**
      * Performs cartisian product on relations rel1 and rel2.
