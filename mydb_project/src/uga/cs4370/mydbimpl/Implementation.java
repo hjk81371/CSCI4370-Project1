@@ -15,17 +15,16 @@ public class Implementation implements RA {
      */
     @Override
     public Relation select(Relation rel, Predicate p) {
-        List<Integer> attrsToKeep = new ArrayList<>();
-        Relation newrel = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();
-        for(int i = 0; i<rel.getSize(); i++){
-            List<Cell> rows = newrel.getRow(i);
-            List<Cell> newRow = new ArrayList<>();
-            for (int j = 0; j < attrsToKeep.size(); j++) {
-                newRow.add(rows.get(attrsToKeep.get(j)));
-            } // for
 
-           
-        }
+        Relation newrel = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();
+        for(int i = 0; i<(rel.getSize()); i++) {
+            List<Cell> findrows = rel.getRow(i);
+            if(p.check(findrows)){
+                newrel.insert(findrows);
+            }
+            
+        } // for
+            
         /*
          * PRETTY MUCH THE WHERE CLAUSE IN SQL.
          */
