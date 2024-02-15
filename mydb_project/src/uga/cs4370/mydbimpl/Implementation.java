@@ -2,6 +2,7 @@ package uga.cs4370.mydbimpl;
 import uga.cs4370.mydb.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Implementation implements RA {
@@ -155,12 +156,12 @@ public class Implementation implements RA {
     public Relation rename(Relation rel, List<String> origAttr, List<String> renamedAttr) {
         List<String> attr = rel.getAttrs();
         List<String> newAttr = new ArrayList<String>();
-        HashMap<String, String> sim = new HasMap<String, String>();
+        HashMap<String, String> sim = new HashMap<String, String>();
         
-        for(int i=0; i<attr.size(): i++){
+        for(int i=0; i<attr.size(); i++){
             sim.put(origAttr.get(i), renamedAttr(i));
         }
-        for(int i=0: i<attr.size(); i++){
+        for(int i=0; i<attr.size(); i++){
             if(sim.containsKey(attr.get(i))){
                 newAttr.add(sim.get(attr.get(i)));
             }
@@ -168,9 +169,10 @@ public class Implementation implements RA {
                 newAttr.add(attr.get(i));
             }
         }
-        Relation newName = new RelationImpl(rel.getTypes(), newAttr);
+        Relation newName = new RelationBuilder().attributeNames(rel.getAttrs()).attributeTypes(rel.getTypes()).build();;
         return newName;
     }
+    
 
     /**
      * Performs cartisian product on relations rel1 and rel2.
@@ -245,7 +247,6 @@ public class Implementation implements RA {
     public Relation join(Relation rel1, Relation rel2, Predicate p) {
         return select(cartesianProduct(rel1, rel2), p);
         
-
         /*
          * NOTE:
          * Joins rel1 and rel2 using cartesianProduct based on Predicate.
