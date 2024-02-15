@@ -33,18 +33,18 @@ public class Driver {
         List<String> testList = new ArrayList<>();
         testList.add("id");
         testList.add("name");
-        testList.add("salary");
         testList.add("dept");
+        testList.add("salary");
         
         RA ra = new Implementation();
 
         Predicate pred = new Predicate(){
             @Override
             public boolean check(List<Cell> row) {
-                int attrIndex = rel2.getAttrIndex("id");
+                int attrIndex = rel1.getAttrIndex("id");
                 Cell cell = row.get(attrIndex);
                 int value = (Integer) cell.getAsInt();
-                return value > 9000;
+                return value > 90000;
             }
         };
 
@@ -64,24 +64,25 @@ public class Driver {
         
         
         List<String> test2 = new ArrayList<>();
-        test2.add("id");
-        test2.add("name");
+        test2.add("ids");
+        test2.add("names");
         test2.add("building");
         test2.add("build_name");
 
-        //ra.rename(rel1, testList, test2).print();
+        //ra.rename(rel2, testList, test2);
         
 
-        ra.join(rel1, rel2).print();
+        //ra.join(rel1, rel2).print();
         //ra.diff(rel1, rel2).print(); //query 1
-        //Relation id9000 =ra.select(rel2, pred);
+        //Relation id9000 =ra.select(rel1, pred);
+        //id9000.print();
         //List<String> deptattr = Arrays.asList("dept");
-        //ra.project(id9000, deptattr).print();
+        //ra.project(rel1,deptattr).print();
 
         //ra.project(rel1, testList).print();
         //ra.cartesianProduct(rel2, ra.project(rel1, testList)).print();
         //ra.cartesianProduct(rel1, rel2).print();
-        //ra.join(rel1,rel2,strPred).print();
+        //ra.join(rel1,rel2,pred).print();
 
         // Relation rel2 = new RelationBuilder()
         //     .attributeNames(List.of("id", "name", "dept", "tot_cred"))
