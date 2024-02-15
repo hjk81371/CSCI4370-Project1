@@ -198,41 +198,41 @@ public class Implementation implements RA {
     @Override
     public Relation cartesianProduct(Relation rel1, Relation rel2) {
         if (rel1.getAttrs().equals(rel2.getAttrs())) {
-        List<String> attrs = new ArrayList<>();
-        attrs.addAll(rel1.getAttrs());
-        List<String> rel2Attributes = rel2.getAttrs();
-        
-        // ensure no duplicate attribute names
-        for (int i = 0; i < rel2Attributes.size(); i++) {
-            if (attrs.contains(rel2Attributes.get(i))) {
-                String currName = rel2Attributes.get(i);
-                String newName = currName + "_rel_2";
-                rel2Attributes.remove(i);
-                rel2Attributes.add(i, newName);
-            }
-        } // for
+            List<String> attrs = new ArrayList<>();
+            attrs.addAll(rel1.getAttrs());
+            List<String> rel2Attributes = rel2.getAttrs();
+            
+            // ensure no duplicate attribute names
+            for (int i = 0; i < rel2Attributes.size(); i++) {
+                if (attrs.contains(rel2Attributes.get(i))) {
+                    String currName = rel2Attributes.get(i);
+                    String newName = currName + "_rel_2";
+                    rel2Attributes.remove(i);
+                    rel2Attributes.add(i, newName);
+                }
+            } // for
 
-        attrs.addAll(rel2Attributes);
-        List<Type> types = new ArrayList<>();
-        types.addAll(rel1.getTypes());
-        types.addAll(rel2.getTypes());
+            attrs.addAll(rel2Attributes);
+            List<Type> types = new ArrayList<>();
+            types.addAll(rel1.getTypes());
+            types.addAll(rel2.getTypes());
 
-        Relation newRel = new RelationBuilder().attributeNames(attrs).attributeTypes(types).build();
-        for (int i = 0; i < rel1.getSize(); i++) {
-            for (int j = 0; j < rel2.getSize(); j++) {
-                List<Cell> rel1Row = rel1.getRow(i);
-                List<Cell> rel2Row = rel2.getRow(j);
-                List<Cell> combinedRows = new ArrayList<>();
-                combinedRows.addAll(rel1Row);
-                combinedRows.addAll(rel2Row);
-                newRel.insert(combinedRows);
+            Relation newRel = new RelationBuilder().attributeNames(attrs).attributeTypes(types).build();
+            for (int i = 0; i < rel1.getSize(); i++) {
+                for (int j = 0; j < rel2.getSize(); j++) {
+                    List<Cell> rel1Row = rel1.getRow(i);
+                    List<Cell> rel2Row = rel2.getRow(j);
+                    List<Cell> combinedRows = new ArrayList<>();
+                    combinedRows.addAll(rel1Row);
+                    combinedRows.addAll(rel2Row);
+                    newRel.insert(combinedRows);
+                }
             }
-        }
 
         /*
          * Every possible combination of joining rel1 and rel2.
          */
-        return newRel;
+            return newRel;
         } else {
             throw new IllegalArgumentException("rel1 and rel2 have common attibutes.");
         }
