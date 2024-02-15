@@ -46,7 +46,7 @@ public class Driver {
             }
         };
 
-        //Relation select = ra.select(rel1, pred);
+        //Relation select = ra.select(rel2, pred);
 
 
         //Queries go here, must have more than 1 table used also between 1 and 50 rows
