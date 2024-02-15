@@ -166,7 +166,7 @@ public class Implementation implements RA {
                 if(sim.containsKey(attr.get(i))){
                     newAttr.add(sim.get(attr.get(i)));
                 }
-                else{
+                else {
                     newAttr.add(attr.get(i));
                 }
             }
