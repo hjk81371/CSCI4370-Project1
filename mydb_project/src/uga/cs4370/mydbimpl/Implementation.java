@@ -155,10 +155,10 @@ public class Implementation implements RA {
     public Relation rename(Relation rel, List<String> origAttr, List<String> renamedAttr) {
         List<String> attr = rel.getAttrs();
         List<String> newAttr = new ArrayList<String>();
-        HashMap<String, String> sim = new HasMap<String, String>();
+        HashMap<String, String> sim = new HashMap<String, String>();
         
         for(int i=0; i<attr.size(): i++){
-            sim.put(origAttr.get(i), renamedAttr(i));
+            sim.put(origAttr.get(i), renamedAttr.get(i));
         }
         for(int i=0: i<attr.size(); i++){
             if(sim.containsKey(attr.get(i))){
