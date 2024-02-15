@@ -62,6 +62,7 @@ public class Driver {
         
         //Queries go here, must have more than 1 table used also between 1 and 50 rows
         
+        /**
         List<String> test2 = new ArrayList<>();
         test2.add("id");
         test2.add("name");
@@ -69,7 +70,9 @@ public class Driver {
         test2.add("build_name");
 
         ra.rename(rel1, testList, test2).print();
+        */
 
+        ra.diff(rel1, rel1).print();
         //Relation id9000 =ra.select(rel2, pred);
         //List<String> deptattr = Arrays.asList("dept");
         //ra.project(id9000, deptattr).print();
