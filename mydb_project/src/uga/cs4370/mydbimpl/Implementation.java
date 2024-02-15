@@ -3,6 +3,7 @@ import uga.cs4370.mydb.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class Implementation implements RA {
@@ -127,7 +128,7 @@ public class Implementation implements RA {
     public Relation diff(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
         if(rel1.getAttrs().size() == (rel2.getAttrs().size()) && (rel1.getTypes().equals(rel2.getTypes()))){
-            Relation newRel = new RelationImpl(rel1.getTypes(), rel1.GetAttrs());
+            Relation newRel = new RelationBuilder().attributeNames(rel1.getAttrs()).attributeTypes(rel1.getTypes()).build();
             HashSet<List<Cell>> sim = new HashSet<List<Cell>>();
             for(int i=0; i<rel2.getSize(); i++){
                 sim.add(rel2.getRow(i));
