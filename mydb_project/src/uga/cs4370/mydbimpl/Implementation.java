@@ -241,6 +241,21 @@ public class Implementation implements RA {
      */
     @Override
     public Relation join(Relation rel1, Relation rel2) {
+        List<String> result = new ArrayList<>();
+        
+        List<String> rel1Attrs = rel1.getAttrs();
+        List<String> rel2Attrs = rel2.getAttrs();
+
+        List<Integer> commonAttrs = new ArrayList<>();
+        for(int i=0; i<rel1Attrs.size(); i++){
+            for(int j=0; j<rel2Attrs.size(); j++){
+                if(rel1Attrs[i].equals(rel2Attrs[j]){
+                    commonAttrs.add(i)
+                }
+            }
+        }
+
+        result = cartesianProduct(rel1
         // NEEDS IMPLEMENTATION
         /*
          * Join columns with cartesian product together, but decide
