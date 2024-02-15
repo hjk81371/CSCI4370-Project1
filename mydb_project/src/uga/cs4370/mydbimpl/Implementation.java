@@ -127,20 +127,29 @@ public class Implementation implements RA {
     public Relation diff(Relation rel1, Relation rel2) {
         // NEEDS IMPLEMENTATION
         if(rel1.getAttrs().size() == (rel2.getAttrs().size()) && (rel1.getTypes().equals(rel2.getTypes()))){
-            Relation newrel = new RelationBuilder().attributeNames(rel1.getAttrs()).attributeTypes(rel1.getTypes()).build();
-
-
-
+            Relation newRel = new RelationImpl(rel1.getTypes(), rel1.GetAttrs());
+            HashSet<List<Cell>> sim = new HashSet<List<Cell>>();
+            for(int i=0; i<rel2.getSize(); i++){
+                sim.add(rel2.getRow(i));
+            }
+            for(int i=0; i<rel1.getSize(); i++){
+                if(!sim.contains(rel1.getRow(i))){
+                    newRel.insert(rel1.getRow((i)));
+                }
+            }
+            return newRel;
+            
+            } else {
+                throw new IllegalArgumentException("rel1 and rel2 are not compatible.");
+            }
+            
         /*
          * NOTE:
          * RETURNING TABLE SHOULD ONLY HAVE ATRRIBUTE NAMES FROM rel1
          * Check if a row in rel1 appears in rel2, if so remove it from returned relation.
          * basically XOR, only return rows not present in both rel1 and rel2.
          */
-            return newrel;
-        } else {
-            throw new IllegalArgumentException("rel1 and rel2 are not compatible.");
-        }
+    
     }
 
     /**
